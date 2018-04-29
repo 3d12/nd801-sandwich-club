@@ -1,8 +1,10 @@
 package com.udacity.sandwichclub;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,6 +12,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.udacity.sandwichclub.model.Sandwich;
 import com.udacity.sandwichclub.utils.JsonUtils;
+
+import org.w3c.dom.Text;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -69,9 +73,11 @@ public class DetailActivity extends AppCompatActivity {
         finish();
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
-
+    
     private void populateUI() {
         mPlaceOfOrigin.setText(mSandwich.getPlaceOfOrigin());
         mDescription.setText(mSandwich.getDescription());
+        mAlsoKnownAs.setText(TextUtils.join(", ", mSandwich.getAlsoKnownAs()));
+        mIngredients.setText(TextUtils.join(", ", mSandwich.getIngredients()));
     }
 }
